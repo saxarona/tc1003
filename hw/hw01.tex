@@ -1,0 +1,123 @@
+\documentclass[]{book}
+
+%These tell TeX which packages to use.
+\usepackage{array,epsfig}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsxtra}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+
+%Here I define some theorem styles and shortcut commands for symbols I use often
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem*{rmk}{Remark}
+\newtheorem{lem}{Lemma}
+\newtheorem*{joke}{Joke}
+\newtheorem{ex}{Example}
+\newtheorem*{sol}{Solution}
+\newtheorem{prop}{Proposition}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\graph}{\mathrm{graph}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\Z}{\bb{Z}}
+\newcommand{\Q}{\bb{Q}}
+\newcommand{\R}{\bb{R}}
+\newcommand{\C}{\bb{C}}
+\newcommand{\N}{\bb{N}}
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\m}{\mathbf{m}}
+\newcommand{\MM}{\mathscr{M}}
+\newcommand{\HH}{\mathscr{H}}
+\newcommand{\Om}{\Omega}
+\newcommand{\Ho}{\in\HH(\Om)}
+\newcommand{\bd}{\partial}
+\newcommand{\del}{\partial}
+\newcommand{\bardel}{\overline\partial}
+\newcommand{\textdf}[1]{\textbf{\textsf{#1}}\index{#1}}
+\newcommand{\img}{\mathrm{img}}
+\newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\inter}[1]{\mathrm{int}{#1}}
+\newcommand{\exter}[1]{\mathrm{ext}{#1}}
+\newcommand{\cl}[1]{\mathrm{cl}{#1}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\vol}{\mathrm{vol}}
+\newcommand{\cnt}{\mathrm{ct}}
+\newcommand{\osc}{\mathrm{osc}}
+\newcommand{\LL}{\mathbf{L}}
+\newcommand{\UU}{\mathbf{U}}
+\newcommand{\support}{\mathrm{support}}
+\newcommand{\AND}{\;\wedge\;}
+\newcommand{\OR}{\;\vee\;}
+\newcommand{\Oset}{\varnothing}
+\newcommand{\st}{\ni}
+\newcommand{\wh}{\widehat}
+
+%Pagination stuff.
+\setlength{\topmargin}{-.3 in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9.in}
+\setlength{\textwidth}{6.5in}
+\setlength{\itemsep}{0.45in}
+\pagestyle{empty}
+
+
+
+\begin{document}
+
+\begin{center}
+{\huge Matemáticas Discretas TC1003}\\[1.5ex]
+{\large \textbf{Tarea 01}\\[1.5ex] %You should put your name here
+23.02.20} %You should write the date here.
+\end{center}
+
+\vspace{0.2 cm}
+
+\subsection*{Lógica proposicional}
+
+Una empresa embotelladora tiene una base de datos con cuatro tablas distintas:
+\textdf{Ventas}, \textdf{Auditoría}, \textdf{Censo}, y \textdf{Entorno}.
+A su vez, los clientes de la empresa pertenecen a distintas áreas del sector comercial:
+\textdf{Industrias y Empresas}, \textdf{Restaurantes}, \textdf{Tiendas de Conveniencia} y \textdf{Casa habitación}.
+
+El equipo de análisis de datos aún no está seguro sobre cuál es el lenguaje que usará.
+Mientras se deciden, te han pedido que dejes las consultas hechas a nivel matemático; luego las adaptarán al lenguaje que decidan emplear.
+
+\bigskip
+
+Comienza \textdf{generando el alfabeto lógico que utilizarás}\dots ¿qué variables usarás para denotar la \textit{pertenencia} de un cliente a cada una de las categorías anteriores? Cuando tengas tu alfabeto, escribe en simbología lógica las siguientes consultas:
+
+\begin{enumerate}
+	\item El cliente tiene ventas o bien datos demográficos de entorno
+	\item El cliente es un restaurante y está en auditoría y censo pero no en entorno
+	\item El cliente es una tienda de conveniencia o una casa habitación y no tiene auditoría
+	\item El cliente es de cualquier tipo excepto casa habitación
+	\item El cliente es una industria, y tenemos todos sus datos
+	\item El cliente es una casa habitación y no tiene censo pero sí tiene auditoría
+	\item El cliente es una empresa que tiene auditoría o censo, pero sólo uno de los dos
+	\item El cliente es un restaurante del que tenemos sus ventas y, o bien censo y auditoría, o bien censo y entorno
+	\item El cliente es un restaurante que no tiene censo ni entorno pero sí tiene ventas
+	\item El cliente está mal etiquetado porque sale como tienda de conveniencia y como restaurante
+\end{enumerate}
+
+\bigskip
+
+¿Puedes reducir alguna de ellas?
+
+\bigskip
+
+Entrega en un documento \textdf{PDF} y súbelo a Canvas, en el apartado adecuado.
+
+\end{document}
+
+
