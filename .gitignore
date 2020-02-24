@@ -2,3 +2,4 @@
 *.nav
 *.snm
 *.vrb
+*.ipynb_checkpoints*
