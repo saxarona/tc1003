@@ -153,26 +153,6 @@
 
 \end{frame}
 
-\subsection{Cuantificadores y operaciones}
-
-\begin{frame}{Cuantificadores}{Cuantificadores y operaciones}
-    Claramente, las relaciones aplican \textit{para algunos Skywalker} y no para todos. \pause
-    Sin embargo, también tenemos relaciones que podrían aplicar \textit{a todos}. \pause
-
-    \begin{block}{Cuantificadores}
-        \begin{itemize}
-            \item $\forall$ que significa \textit{para todos}
-            \item $\exists$ que significa \textit{existe}
-            \item $\exists!$ que significa \textit{existe un único}
-        \end{itemize}
-    \end{block} \pause
-
-    \bigskip
-
-    Puedes agregarle negación frente a cada uno para cambiar el significado a lo contrario.
-    ¿Qué significa la negación de cada uno de ellos?
-\end{frame}
-
 \begin{frame}{Relaciones inversas}{Relaciones}
     La \alert{inversa} $R^-1$ de una relación $R$ es \dots $R$ al revés.
 
@@ -191,6 +171,26 @@
         \item ¿Cuál sería la relación inversa?
     \end{itemize}
 
+\end{frame}
+
+\subsection{Cuantificadores y operaciones}
+
+\begin{frame}{Cuantificadores}{Cuantificadores y operaciones}
+    Claramente, las relaciones aplican \textit{para algunos Skywalker} y no para todos. \pause
+    Sin embargo, también tenemos relaciones que podrían aplicar \textit{a todos}. \pause
+
+    \begin{block}{Cuantificadores}
+        \begin{itemize}
+            \item $\forall$ que significa \textit{para todos}
+            \item $\exists$ que significa \textit{existe}
+            \item $\exists!$ que significa \textit{existe un único}
+        \end{itemize}
+    \end{block} \pause
+
+    \bigskip
+
+    Puedes agregarle negación frente a cada uno para cambiar el significado a lo contrario.
+    ¿Qué significa la negación de cada uno de ellos?
 \end{frame}
 
 \begin{frame}{Imagen de una relación}{Operaciones}
@@ -329,8 +329,9 @@
         \begin{itemize}
             \item \textbf{Q}: ¿Cuál es la \textbf{cerradura transitiva} de $A = \{(2, 3), (3, 4), (1, 2), (3, 1), (1,7),(7,8)\}$?
             \item \textbf{A}: \begin{align*}
-                A = \{& (2, 3), (3, 4), (1, 2), (3, 1), (1,7), (7,8), \\
-                      & (2, 4), (1, 3), (3, 2), (1, 8), (1, 4), (1, 1), (3, 3)\}
+                A = \{& (2, 3), (3, 4), (1, 2), (3, 1), (1, 7), (7, 8), \\
+                      & (2, 4), (2, 1), (1, 3), (1, 4), (1, 1), (3, 7), \\
+                      & (3, 3), (1, 8), (2, 7), (2, 8), (3, 8) \}
             \end{align*}
         \end{itemize}        
     \end{exampleblock}
@@ -412,18 +413,62 @@
 
 \begin{frame}{Funciones Inyectivas}{Propiedades de las funciones}
     
-    NotImplemented
+    \begin{block}{Función inyectiva}
+        Se dice que una función $f: A \to B$ es \alert{inyectiva} (o bien, \textit{uno a uno}) si cumple con lo siguiente
+        $$\forall a, a' \in A \left(a \neq a' \iff f(a) \neq f(a') \right)$$
+    \end{block} \pause
+
+    \bigskip
+
+    Es decir, que para cada \textit{argumento} distinto, le toca un \textit{valor} distinto. \pause
+
+    \bigskip
+
+    \begin{exampleblock}{Ejemplo}
+        \begin{itemize}
+            \item La función $sucesor$ es una función inyectiva sobre $\mathbb{N}$. \pause
+            \item La función $f(x) = x^2$ es inyectiva sobre $\mathbb{N}$. ¿Y sobre $\mathbb{Z}$?
+        \end{itemize}
+    \end{exampleblock}
 
 \end{frame}
 
-\begin{frame}{Funciones Sobreyectivas}{Propiedades de las funciones}    
+\begin{frame}{Funciones Suprayectivas}{Propiedades de las funciones}    
 
-    NotImplemented
+    \begin{block}{Función suprayectiva}
+        Una función $f : A \to B$ es suprayectiva (o \textit{sobre}) si se cumple lo siguiente:
+        $$\forall b \in B \left(\exists a \in A | f(a) = b \right)$$ 
+    \end{block} \pause
+
+    \bigskip
+
+    En otras palabras, si el rango de $f$ \textit{agota} $B$ (o sea, usa todos sus elementos). \pause
+
+    \bigskip
+
+    \begin{exampleblock}{Ejemplo}
+        \begin{itemize}
+            \item La función $sucesor$ es una función suprayectiva \textit{bajo} $\mathbb{N}$. \pause
+            \item ¿Es suprayectiva la función $f(x) = x^2$ bajo $\mathbb{N}$? ¿Y bajo $\mathbb{Z}$?
+        \end{itemize}
+    \end{exampleblock}
 
 \end{frame}
 
 \begin{frame}{Funciones Biyectivas}{Propiedades de las funciones}
-    NotImplemented
+
+    \begin{block}{Biyección}
+        Una función es \alert{biyectiva} (o una biyección) si es \textbf{inyectiva} y \textbf{suprayectiva}.
+    \end{block} \pause
+
+    \bigskip
+
+    Es decir que para que sea biyectiva, debe cumplirse que:
+
+    \begin{itemize}
+        \item Para cada input le corresponde un output distinto. \pause
+        \item Utilizo todos los outputs del \textit{codominio}.
+    \end{itemize}
     
 
 \end{frame}
