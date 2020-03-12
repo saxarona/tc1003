@@ -293,7 +293,7 @@
 
     \begin{block}{Antisimetría}
         Una relación es \alert{antisimétrica} si y solo si
-        $$\forall (a,b) \in R\left( (a, b) \in R \implies (b, a) \not \in R \right)$$
+        $$\forall (a,b) \in R\left( (a, b) \in R \implies (b, a) \not \in R \right) \iff a \neq b$$
     \end{block} \pause
 
     \bigskip
@@ -329,9 +329,9 @@
         \begin{itemize}
             \item \textbf{Q}: ¿Cuál es la \textbf{cerradura transitiva} de $A = \{(2, 3), (3, 4), (1, 2), (3, 1), (1,7),(7,8)\}$?
             \item \textbf{A}: \begin{align*}
-                A = \{& (2, 3), (3, 4), (1, 2), (3, 1), (1, 7), (7, 8), \\
-                      & (2, 4), (2, 1), (1, 3), (1, 4), (1, 1), (3, 7), \\
-                      & (3, 3), (1, 8), (2, 7), (2, 8), (3, 8) \}
+                R[A] = \{& (2, 3), (3, 4), (1, 2), (3, 1), (1, 7), (7, 8), \\
+                         & (2, 4), (2, 1), (1, 3), (1, 4), (1, 1), (3, 7), \\
+                         & (3, 3), (1, 8), (2, 7), (2, 8), (3, 8), (3, 2), (2, 2) \}
             \end{align*}
         \end{itemize}        
     \end{exampleblock}
@@ -388,7 +388,7 @@
 
     \bigskip
 
-    Cuando una función utiliza \textbf{todos} los elementos de su rango, entonces se dice que es una \alert{función completa}. Si no lo hace, entonces es una \alert{función parcial}.
+    Cuando una función utiliza \textbf{todos} los elementos de su dominio, entonces se dice que es una \alert{función completa}. Si no lo hace, entonces es una \alert{función parcial}.
 
 \end{frame}
 
@@ -476,12 +476,33 @@
 \subsection{Equipotencia y el Principio del Palomar}
 
 \begin{frame}{Equipotencia}{Funciones}
-    NotImplemented
+    El concepto de \alert{equipotencia} (también llamado \textit{equinumerosidad}) surge al mostrar que dos \textbf{conjuntos} son \textit{del mismo tamaño}. \pause
+
+    \bigskip
+
+    Esto se puede \textit{probar} si logramos encontrar una \textbf{biyección} entre ambos conjuntos. \pause
+
+    \bigskip
+
+    \begin{center}
+        \textit{Story time: $\mathbb{N}$ vs $\mathbb{Z}$ vs $\mathbb{Q}$}
+    \end{center}
 
 \end{frame}
 
 \begin{frame}{El principio del palomar}{Funciones}
-    NotImplemented
+    El hecho de que dos conjuntos sean \textbf{equipotentes} da pie a encontrar propiedades interesantes.
+    \pause
+
+    \bigskip
+
+    Por ejemplo, que si tienes más palomas que palomares; significa que tendrás que poner al menos dos palomas en el mismo palomar. \pause
+
+    \bigskip
+
+    \begin{exampleblock}{Ejercicio}
+        Si un pueblo tiene 400 habitantes, demuestra que al menos 2 personas cumplen años el mismo día y que al menos 34 cumplen años el mismo mes.
+    \end{exampleblock}
 
 \end{frame}
 
