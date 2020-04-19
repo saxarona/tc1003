@@ -1,0 +1,118 @@
+\documentclass[]{book}
+
+%These tell TeX which packages to use.
+\usepackage{array,epsfig}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsxtra}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage[spanish, mexico]{babel}
+\usepackage[utf8]{inputenc}
+
+%Here I define some theorem styles and shortcut commands for symbols I use often
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{cor}{Corollary}
+\newtheorem*{rmk}{Remark}
+\newtheorem{lem}{Lemma}
+\newtheorem*{joke}{Joke}
+\newtheorem{ex}{Example}
+\newtheorem*{sol}{Solution}
+\newtheorem{prop}{Proposition}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\graph}{\mathrm{graph}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+\newcommand{\Z}{\bb{Z}}
+\newcommand{\Q}{\bb{Q}}
+\newcommand{\R}{\bb{R}}
+\newcommand{\C}{\bb{C}}
+\newcommand{\N}{\bb{N}}
+\newcommand{\M}{\mathbf{M}}
+\newcommand{\m}{\mathbf{m}}
+\newcommand{\MM}{\mathscr{M}}
+\newcommand{\HH}{\mathscr{H}}
+\newcommand{\Om}{\Omega}
+\newcommand{\Ho}{\in\HH(\Om)}
+\newcommand{\bd}{\partial}
+\newcommand{\del}{\partial}
+\newcommand{\bardel}{\overline\partial}
+\newcommand{\textdf}[1]{\textbf{\textsf{#1}}\index{#1}}
+\newcommand{\img}{\mathrm{img}}
+\newcommand{\ip}[2]{\left\langle{#1},{#2}\right\rangle}
+\newcommand{\inter}[1]{\mathrm{int}{#1}}
+\newcommand{\exter}[1]{\mathrm{ext}{#1}}
+\newcommand{\cl}[1]{\mathrm{cl}{#1}}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\vol}{\mathrm{vol}}
+\newcommand{\cnt}{\mathrm{ct}}
+\newcommand{\osc}{\mathrm{osc}}
+\newcommand{\LL}{\mathbf{L}}
+\newcommand{\UU}{\mathbf{U}}
+\newcommand{\support}{\mathrm{support}}
+\newcommand{\AND}{\;\wedge\;}
+\newcommand{\OR}{\;\vee\;}
+\newcommand{\Oset}{\varnothing}
+\newcommand{\st}{\ni}
+\newcommand{\wh}{\widehat}
+
+%Pagination stuff.
+\setlength{\topmargin}{-.3 in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9.in}
+\setlength{\textwidth}{6.5in}
+\setlength{\itemsep}{0.45in}
+\pagestyle{empty}
+
+
+
+\begin{document}
+
+\begin{center}
+{\huge Matemáticas Discretas TC1003}\\[1.5ex]
+{\large \textbf{Tarea 03}\\[1.5ex] %You should put your name here
+26.04.20} %You should write the date here.
+\end{center}
+
+\vspace{0.2 cm}
+
+\subsection*{Lógica de Primer Orden}
+
+{\footnotesize \textit{El siguiente problema fue originalmente propuesto por el Dr. Santiago Conant-Pablos, profesor investigador del Grupo de Investigación con Enfoque Estratégico en Sistemas Inteligentes.}}
+
+\bigskip
+
+Demuestra o refuta mediante \textdf{reglas de inferencia} (que puede incluir resolución por refutación) que \textit{Plata no es un cerdo}, que \textit{los caballos no tienen alas} y que \textit{Plata es un caballo con alas que sabe silbar} si se sabe que:
+
+\begin{itemize}
+	\item \textit{Ningún caballo sabe silbar}
+	\item \textit{Ningún cerdo tiene alas}
+	\item \textit{Todos los que no saben silbar tienen alas}
+	\item \textit{Plata es un caballo}
+\end{itemize}
+
+\bigskip
+
+Para traducir a lógica de predicados, utiliza el siguiente vocabulario:
+
+\begin{itemize}
+	\item $Caballo(x) \longrightarrow$ $x$ es un caballo
+	\item $Silbar(x)\longrightarrow$ $x$ sabe silbar
+	\item $Alas(x) \longrightarrow$ $x$ tiene alas
+	\item $Cerdo(x)\longrightarrow$ $x$ es un cerdo
+\end{itemize}
+
+\bigskip
+
+Entrega en un documento \textdf{PDF} en \textdf{typesetting} (es decir, formato nativamente digital, \textbf{no escaneo}) y súbelo a Canvas, en el apartado adecuado.
+
+\end{document}
+
+
