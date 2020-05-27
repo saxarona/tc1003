@@ -1,0 +1,149 @@
+\documentclass[spanish, 10pt]{article}
+
+\usepackage[table, xcdraw]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, mexico]{babel}
+\usepackage{helvet}
+\usepackage{fullpage}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{ulem}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[margin = 3 cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tcolorbox}
+
+\usepackage{matlab-prettifier}
+\usepackage{multicol}
+
+\usetikzlibrary{arrows, shapes, trees, calc, decorations.pathreplacing, shapes.misc, positioning, automata}
+
+\setlength\parindent{0pt}
+
+\renewcommand{\familydefault}{\sfdefault}
+\newcommand{\responserule}{{\large\rule{14 cm}{0.3mm}}}
+\newcommand{\shortresponserule}{{\large\rule{5 cm}{0.3mm}}}
+\newcommand{\veryshortresponserule}{{\large\rule{3 cm}{0.3mm}}}
+\newcommand{\matlab}[1]{\lstinline[style=Matlab-pyglike]!#1!}
+
+
+% Specifications for listing package
+% \lstset{	
+%     basicstyle = \scriptsize\ttfamily,
+%     keywordstyle = \color{blue}\ttfamily,
+%     stringstyle = \color{red}\ttfamily,
+%    	commentstyle = \color{gray}\ttfamily,
+%    	tabsize = 3,
+%    	breaklines = true,
+%    	stepnumber = 1,
+%    	showtabs = false,
+%    	showstringspaces = false,
+%    	frame = none
+% }
+
+% Commands for true/false questions
+% ----------------------------------------------------------------
+\newcommand{\question}[1]{%
+	\noindent
+	\begin{minipage}[t]{0.15\linewidth}
+	\centering		
+		\textbf{[\hspace{1 cm}]}
+	\end{minipage}%
+	\begin{minipage}[t]{0.85\linewidth}
+		#1
+	\end{minipage}
+	\smallskip
+}
+% ----------------------------------------------------------------
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\begin{center}
+	{\Large \textbf{Matemáticas Discretas (TC-1003)}}
+	
+	\bigskip
+	{\large \textbf{AEX03 -- Grafos}}
+\end{center}
+
+\bigskip
+{\large \textbf{Nombre}: \rule{13.7 cm}{0.4mm}}
+
+% \bigskip
+% {\large \textbf{Matrícula}: \rule{5 cm}{0.4mm}}
+
+% \bigskip
+% {\large \textbf{Name}: \rule{14 cm}{0.4mm}}
+
+\bigskip
+{\large \textbf{Matrícula}: \rule{5 cm}{0.4mm}} \hfill {\large \textbf{Fecha}: \today}
+
+\bigskip
+
+% {\footnotesize Nota: es probable que esta actividad nos asuste un poco al principio. Es perfectamente normal.
+% En efecto, es de mayor dificultad a las que hemos visto anteriormente y probablemente haya dudas.
+% Si hay algo que no entiendas, no te quedes sin preguntar.}
+
+\section{Árboles y expresiones S}
+
+Una \textit{S-expression} (expresión S en español, también conocida como \texttt{sexpr} o \texttt{sexp}) es una manera conveniente de expresar una lista anidada de datos.
+El nombre viene de \textit{expresión simbólica} y podemos explicar su comportamiento con el siguiente ejemplo:
+
+\begin{enumerate}
+	\item Piensa en la expresión $2x^3 + 5x^2 - 4x + 10$
+	\item Considera cada operador ($+, -, *, \wedge$) como una función binaria i.e. de dos parámetros. 
+	\item Convierte cada término de la expresión usando las funciones binarias descritas en el paso anterior, recursivamente si es necesario.
+		  Puedes usar funciones como argumentos de otras funciones.
+		  Por ejemplo $2x^3$ es una $x$ \textsl{elevada} a la 3, y eso \textsl{multiplicado} por 2: $*(\wedge (x, 3), 2)$
+	\item Transforma cada expresión a \textbf{notación polaca}, e.g. para expresar la suma aplicada a los argumentos 3 y 4, escribe $(+ 3,  4)$ en lugar de $+(3, 4)$
+	\item Une cada término bajo la misma idea.
+\end{enumerate}
+
+Expresión de ejemplo:
+\begin{tcolorbox}
+	\begin{center}
+		\texttt{(+ (- (+ (* 2 ($\wedge$ x 3)) (* 5 ($\wedge$ x 2))) (* 4 x)) 10)}
+	\end{center}
+\end{tcolorbox}
+
+Puedes ahora generar un árbol con la expresión completa usando las reglas siguientes:
+
+\begin{itemize}
+	\item Lee la cadena de caracteres de izquierda a derecha.
+	\item Al leer un \textbf{espacio en blanco}, considera que no escribirás más en el vértice actual. Continúa leyendo la cadena de caracteres.
+	\item Al leer un \textbf{paréntesis que abre} `(', genera un vértice, que sea descendiente del último vértice visitado y muévete a él. Continúa leyendo.
+	\item Al leer un \textbf{operador}, etiqueta el vértice actual con su símbolo y continúa leyendo.
+	\item Al leer un \textbf{símbolo} (variable o número), genera un vértice que sea descendiente del último vértice visitado  y muévete a él. Etiqueta el vértice actual con dicho símbolo y regresa al vértice padre. Continúa leyendo.
+	\item Al leer un \textbf{paréntesis que cierra} `)', regresa al padre del vértice en donde estás. Continúa leyendo.
+	\item Deja de leer cuando no tengas más símbolos por leer en la cadena de caracteres. En este momento finaliza el proceso.
+\end{itemize}
+
+\pagebreak
+
+Tomando en cuenta esta información, realiza los siguientes ejercicios.
+
+\begin{enumerate}[label*=\alph*)]
+	\item Genera el árbol de la expresión de ejemplo (10 \%)
+	\item Propón dos polinomios de al menos 3 términos (4 \%)
+	\begin{itemize}
+		\item Genera la \textsl{S-expression} resultante para cada uno (30 \%)
+		\item Genera el grafo de la \textsl{S-expression} resultante para cada uno (30 \%)
+	\end{itemize}
+	\item ¿Cuáles son los números máximos de vértices y de ejes que pueden existir en un solo término del polinomio? (6 \%)
+	\item ¿Cuáles son los números máximos de de vértices y de ejes en una S-expression de $n$ términos?. Justifica tu respuesta con una prueba matemática (20 \%)
+\end{enumerate}
+\vspace{50ex}
+
+% \section{Reflexión}
+
+% Escribe los conceptos, tips o símbolos que consideres útiles para recordar lo visto en la sesión. Esta hoja te será de utilidad durante el examen.
+
+\vfill
+
+\textbf{Apegándome al Código de Ética de los Estudiantes del Tecnológico de Monterrey, me comprometo a que mi actuación en esta actividad esté regida por la honestidad académica.}
+
+\end{document}
