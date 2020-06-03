@@ -1,0 +1,331 @@
+\documentclass{article}
+%\usepackage[a4paper]{geometry}
+\usepackage{fullpage}
+\usepackage[utf8]{inputenc}
+% \usepackage[english, mexico]{babel}
+\usepackage{lipsum}
+\usepackage{bm}
+\usepackage{upgreek}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage[fleqn]{amsmath}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{tcolorbox}
+\usepackage{csquotes}
+\usepackage{helvet}
+
+
+% mathtools for: Aboxed (put box on last equation in align envirenment)
+\usepackage{microtype} %improves the spacing between words and letters
+
+%% COLOR DEFINITIONS
+
+\usepackage{xcolor} % Enabling mixing colors and color's call by 'svgnames'
+
+\definecolor{MyColor1}{rgb}{0.2,0.4,0.6} %mix personal color
+\newcommand{\textb}{\color{Black} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\blue}{\color{MyColor1} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\blueb}{\color{MyColor1} \usefont{OT1}{lmss}{b}{n}}
+\newcommand{\red}{\color{LightCoral} \usefont{OT1}{lmss}{m}{n}}
+\newcommand{\green}{\color{Turquoise} \usefont{OT1}{lmss}{m}{n}}
+
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator*{\argmin}{argmin} % no space, limits underneath in displays
+\DeclareMathOperator*{\argmax}{argmax} % no space, limits underneath in displays
+
+%% FONTS AND COLORS
+
+%    SECTIONS
+
+\usepackage{titlesec}
+\usepackage{sectsty}
+%%%%%%%%%%%%%%%%%%%%%%%%
+%set section/subsections HEADINGS font and color
+%\sectionfont{\color{Black}}  % sets colour of sections
+%\subsectionfont{\color{Black}}  % sets colour of sections
+
+%set section enumerator to arabic number (see footnotes markings alternatives)
+\renewcommand\thesection{\arabic{section}} %define sections numbering
+\renewcommand\thesubsection{\thesection.\arabic{subsection}} %subsec.num.
+
+%define new section style
+\newcommand{\mysection}{
+\titleformat{\section} [runin] {\usefont{OT1}{lmss}{b}{n}\color{MyColor1}} 
+{\thesection} {3pt} {} } 
+
+
+% %	CAPTIONS
+% \usepackage{caption}
+% \usepackage{subcaption}
+% %%%%%%%%%%%%%%%%%%%%%%%%
+% \captionsetup[figure]{labelfont={color=Turquoise}}
+
+
+%		!!!EQUATION (ARRAY) --> USING ALIGN INSTEAD
+%using amsmath package to redefine eq. numeration (1.1, 1.2, ...) 
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+
+\setlength\parindent{0pt}
+
+
+
+
+\makeatletter
+\let\reftagform@=\tagform@
+\def\tagform@#1{\maketag@@@{(\ignorespaces\textcolor{red}{#1}\unskip\@@italiccorr)}}
+\renewcommand{\eqref}[1]{\textup{\reftagform@{\ref{#1}}}}
+\makeatother
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+
+% For labeling top of page on every page but first one:
+%\usepackage{fancyhdr}
+
+\newcommand{\myclass}{TC1003 -- Matemáticas Discretas} % Class name?
+\newcommand{\mytitle}{Examen Final} % Title of document?
+\newcommand{\mydate}{03.06.2020} % The date?
+\newcommand{\myheader}{
+    \begin{flushleft}
+        \large
+        Nombre: \rule{10 cm}{0.4mm} \hfill Matrícula: \rule{2 cm}{0.4mm}\\[1.5ex]
+    \end{flushleft}
+}
+
+\title{
+    \myclass \\
+    \textbf{\mytitle} \\
+    \myheader
+    \date{}
+}
+
+% You can set the date automatically by replacing "date goes here" with "\today"
+
+% \renewcommand{\rmdefault}{phv} % Arial Font
+\renewcommand{\familydefault}{\sfdefault}
+
+% \pagestyle{fancy}
+% \fancyhead{}
+% \fancyhead[CO,CE]{{\small{{\bf{\mytitle}} -- \myclass}}}
+
+\newcommand{\responserule}{{\large\rule{14 cm}{0.3mm}}}
+\newcommand{\shortresponserule}{{\large\rule{5 cm}{0.3mm}}}
+\newcommand{\veryshortresponserule}{{\large\rule{3 cm}{0.3mm}}}
+
+\begin{document}
+\maketitle
+
+\vspace{-1.5cm}
+
+{%
+\footnotesize
+\textit{Lee cuidadosamente y contesta lo que se te pide.
+Este examen está pensado para resolverse de manera individual y tienes cerca de cinco días para resolverlo.}
+
+\textit{Al momento de contestar, intenta ser lo más explícito posible: se calificará con base en lo que esté escrito, y se considerará el proceso aún cuando la respuesta final esté errada.
+Recuerda que puedes revisar material de la clase, el libro de texto o tus notas.
+Buena suerte.}
+}
+
+\section{Grafos I: propiedades (25\% +2)}
+
+Considera el siguiente grafo $G = (V, E)$ no direccionado, que representa las regiones de \textit{Tirn's End} y \textit{Haewark Hamlet} en el segundo cuadrante del Atlas en \textit{Path of Exile: Delirium}, donde
+
+\begin{equation*}
+    \begin{split}
+V = \{& Wharf, Strand, Alleyways, Laboratory, Desert, CursedCrypt, Bazaar, Leyline, VaalPyramid, \\
+      & Museum, Temple, PrimordialPool, Waterways, Colonnade, Phantasmagoria, Academy, \\
+      & Conservatory, CastleRuins, Chateau\}
+    \end{split}
+\end{equation*}
+ y
+ \begin{equation*}
+     \begin{split}
+E =  \big \{ & (Wharf, Alleyways), (Wharf, Laboratory), (Wharf, Strand), \\
+        & (Strand, PrimordialPool), (Strand, Temple), \\
+        & (Alleyways, Desert), \\
+        & (Laboratory, Museum), (Laboratory, VaalPyramid), (Laboratory, CursedCrypt), \\
+        & (Desert, CursedCrypt), (Desert, Bazaar), \\
+        & (CursedCrypt, Leyline), \\
+        & (Bazaar, Leyline), \\
+        & (Leyline, Conservatory), \\
+        & (VaalPyramid, Conservatory), (VaalPyramid, Academy), (VaalPyramid, Museum), \\
+        & (Museum, Academy), (Museum, Temple), \\
+        & (Temple, Academy), (Temple, Phantasmagoria), \\
+        & (PrimordialPool, Phantasmagoria), (PrimordialPool, Waterways), \\
+        & (Waterways, Colonnade), \\
+        & (Colonnade, Chateau), \\
+        & (Phantasmagoria, Colonnade), (Phantasmagoria, Academy), \\
+        & (Academy, CastleRuins), \\
+        & (Conservatory, CastleRuins), \\
+        & (CastleRuins, Chateau) \big \}   
+     \end{split}
+ \end{equation*}
+
+\pagebreak
+
+\subsection{Información básica (12 \%)}
+
+Considerando que $v \in V$, llena la información básica del grafo.
+Si existe más de un caso para algún inciso, escribe la respuesta como un conjunto.
+
+\begin{enumerate}[label=\tt \alph*)]
+    \item $|V| =$
+    \item $|E| =$
+    \item $\max deg(v) =$
+    \item $\min deg(v) =$
+    \item $\argmax deg(v) =$
+    \item $\argmin deg(v) =$
+\end{enumerate}
+
+\subsection{Representación visual (13 \%)}
+
+Genera la representación visual del grafo. Se recomienda ampliamente que utilices algún software para ello, pues te ayudará a contestar más fácilmente el resto del examen. Considera la siguiente información adicional que puede serte de ayuda:
+
+\begin{itemize}
+    \item Cada vértice representa un mapa.
+    \item Cada mapa tiene un nivel (de ahora en adelante \textit{Tier}):
+    \begin{itemize}
+        \item $T_1 = \{Wharf\}$
+        \item $T_2 = \{Strand, Alleways, Laboratory, CursedCrypt, Desert\}$
+        \item $T_3 = \{Waterways, PrimordialPool, Temple, Museum, VaalPyramid, Leyline, Bazaar\}$
+        \item $T_4 = \{Colonnade, Phantasmagoria, Academy, Conservatory\}$
+        \item $T_5 = \{Chateau, CastleRuins\}$
+    \end{itemize}
+    \item Un mapa sólo puede estar conectado a otros que sean de su mismo \textit{Tier}, o uno más, o uno menos.
+    \item No existen mapas aislados.
+    \item El grafo es \textit{planar}, lo que significa que existe alguna manera de dibujarlo sin que sus ejes se crucen. Si puedes, plásmalo como tal (+2)
+\end{itemize}
+
+\section{Grafos II: Relaciones y lógica (55 \%)}
+
+\subsection{Completando el Atlas (40 \%)}
+
+El Atlas es un compendio de mapas, y funciona de manera similar a un álbum de estampas coleccionables.
+Un mapa, al igual que una estampita, tiene dos posibles estados: completo (ya lo tengo) o incompleto (no lo tengo).
+Por defecto, un mapa empieza incompleto y se completa cuando el mapa ya ha sido explorado.
+
+Aquellos mapas que han sido explorados, entran a un conjunto $C$, donde se almacenan \textbf{todos} los mapas completados.
+Cuando te encuentras en un mapa $i$, existe un conjunto $D_i$ donde se guardan los mapas que puedes obtener al estar en dicho vértice.
+Considerando que $T(i)$ es una función que devuelve el nivel de un mapa, y $F_i$ es la frontera del mismo, sabemos que un mapa $d \in D_i$ al cumplirse \textbf{cualquiera} de las siguientes reglas:
+
+\begin{enumerate}
+    \item $d \in C \wedge T(d) \leq T(i) + 2 \implies d \in D_i$
+    \item $d \in F_i$
+\end{enumerate}
+
+Con esta información, realiza lo siguiente:
+
+\begin{enumerate}[label=\tt \alph*)]
+    \item Define por extensión el conjunto $D_{Temple}$ si has completado todos los mapas de \textit{Tier} 1, 2 y 3 (10 \%)
+    \item Considerando que no lo has completado, demuestra o refuta que $Phantasmagoria$ es un mapa obtenible estando en $Museum$ (10 \%)
+    \item Sabiendo que has completado todo el Atlas, demuestra o refuta que $D_{Conservatory} = D_{PrimordialPool}$ (10 \%)
+    \item Si usaras un color para marcar los mapas explorados y otro color para marcar los mapas inexplorados, ¿Es posible colorear el grafo sin que dos mapas adyacentes tengan el mismo color? ¿Por qué? (10 \%)
+\end{enumerate}
+
+\subsection{Obteniendo mapas repetidos (7 \%)}
+
+La obtención de un mapa se da siempre de manera aleatoria, y para fines prácticos, asumimos que la distribución es uniforme: todo mapa $d \in D_i$ tiene la misma probabilidad de ser obtenido al estar presente en el mapa $i$.
+
+Para esto, se generan dos eventos en el siguiente orden:
+
+\begin{enumerate}
+    \item \textit{Tier roll}: se escoge el \textit{Tier} del mapa que te tocará, considerando los \textit{Tiers} disponibles en el conjunto de mapas obtenibles $D_i$
+    \item \textit{Map roll}: se escoge el mapa específico que te tocará, considerando de los mapas disponibles en $D_i$ sólo aquellos que sean del \textit{Tier} que se definió en el evento anterior.
+\end{enumerate}
+
+Con lo que sabes hasta el momento, y considerando que ya completaste todo el grafo $G$, ¿cuál es el mapa que ofrece la mayor probabilidad de obtener algún mapa de \textit{Tier} 2? (\textit{Hint: Puedes calcular la probabilidad de obtener un mapa Tier 2 con la división $\frac{m}{n}$ donde $m = |\{x : x \in D_i, T(x) = 2\}|$, y $n = |D_i|$.
+\\ Hint 2: Puedes ignorar el Tier roll dado a que ya completaste todo el Atlas}) (7 \%)
+
+\subsection{Borrando el progreso del Atlas (8 \%)}
+
+Existen maneras de \textit{borrar} el progreso del Atlas, de tal modo que algunos mapas dejan de estar completos y vuelven a marcarse como incompletos. Esto tiene repercusiones sobre el conjunto de mapas completados $C$, y por tanto sobre el conjunto de mapas obtenibles $D_i$ para cada mapa $i$.
+Es en casos como estos en donde el \textit{Tier roll} entra en efecto: primero se selecciona un \textit{Tier} de los disponibles en $D_i$, y luego un mapa de dicho \textit{Tier} de los disponibles en $D_i$.
+
+Conociendo esta información, y considerando que tienes el Atlas completo, ¿qué mapas deberías borrar para obtener \textbf{mayor probabilidad} de conseguir un $Alleyways$ si estoy en $Alleyways$? (8 \%)
+
+\pagebreak
+
+\section{Grafos III: Caminatas, Caminos y Ciclos (20 \% )}
+
+\subsection{\textit{Conqueror Influence} (20 \%)}
+
+De vez en cuando, un \textit{Conqueror} puede ejercer cierta influencia sobre el Atlas, agregando tropas para defender su territorio.
+Para ello, hay que explorar tres mapas adyacentes distintos, sin repetir el mapa pasado. Esto significa que
+$$Phantasmagoria, Temple, Academy$$
+es una secuencia válida, pero
+$$Wharf, Strand, Wharf$$
+no lo es.
+
+Una vez que el \textit{Conqueror} ejerce influencia sobre el Atlas, podemos explorar cinco mapas adyacentes distintos, sin repetir el mapa pasado, para enfrentarlo y quitarle dicho territorio. Esto significa que
+$$Colonnade, Phantasmagoria, PrimordialPool, Waterways, Colonnade$$
+es una secuencia válida, pero
+$$Strand, PrimordialPool, Phantasmagoria, PrimordialPool, Strand$$ no lo es.
+
+\begin{enumerate}[label=\tt \alph*)]
+    \item Propón otras dos secuencias válidas para atraer la influencia de un \textit{Conqueror}, considerando que borraste todos los mapas de \textit{Tiers} 3, 4 y 5 (10 \%)
+    \item Considerando el caso de que hayas borrado todos los mapas de \textit{Tier} 1, 2 y 5, propón otras dos secuencias válidas para enfrentar al Conqueror y quitarle el territorio.
+\end{enumerate}
+
+
+
+
+
+% Convierte los siguientes enunciados a fórmulas de lógica de primer orden (15 \%)
+
+% \begin{enumerate}[label=\tt \alph*)]
+%     \itemsep0em
+%     \item \textit{Todas las hojas son del viento}
+%     \item \textit{Todos los invitados son campesinos}
+%     \item \textit{Algunos invitados plantan algodón}
+%     \item \textit{Otros invitados cultivan arroz}
+%     \item \textit{De los invitados, solamente yo planto salchichas empanizadas}
+% \end{enumerate}
+
+% Utilizando las identidades de dualidad de los cuantificadores, reescribe los enunciados anteriores:
+
+% \begin{enumerate}[label=\tt \alph*)]
+%     \item En lógica de primer orden (10 \%)
+%     \item En texto, nuevamente, basándote en las fórmulas del inciso anterior (5 \%)
+% \end{enumerate}
+
+% \section{Inferencia (45 \%)}
+
+% Los sistemas de recomendación de contenidos digitales se basan mayormente en modelos probabilísticos que entrenan con lo que los usuarios buscan y recomiendan como contenido similar.
+% Sin embargo, existe otro enfoque basado en razonamiento en el cual se generan reglas que analizan el contenido mismo, para decidir qué recomendaciones hacer si dos artistas contienen características similares.
+
+% Implementaremos la lógica detrás de un sistema basado en razonamiento para recomendación de grupos de K-Pop, considerando la siguiente información:
+
+% \vspace{2ex}
+
+% A los fans de Girls' Generation se les conoce como \textit{SONEs}, mientras que a los de Red Velvet les llaman \textit{Reveluvs} y a los de Blackpink, \textit{Blinks}.
+% A todos los \textit{SONEs} les gusta Red Velvet o Blackpink.
+% Si les gusta Red Velvet, entonces le gustan las baladas.
+% Si les gusta Blackpink, entonces les gusta el dance.
+% Si les gusta la música electrónica y son \textit{SONEs}, recomiéndales DJ Hyo.
+% La gente que disfruta el dance y las baladas, consideran a Chung Ha como una buena recomendación.
+% Todos los \textit{SONEs} a los que les gusta el drama, calificaron a Seohyun como una buena recomendación.
+% Taeyeon le interesa a todos los usuarios que gustan de las baladas y son \textit{SONEs}.
+% Si les gusta el drama y las baladas, es seguro que Heize les gustará.
+
+% \pagebreak
+
+% \begin{itemize}
+%     \item Genera la base de conocimiento proponiendo el vocabulario que usará tu sistema y convirtiendo las reglas a forma simbólica (5\%)
+%     \item Usando resolución por refutación, demuestra que si un usuario nuevo es fan de las Girls' Generation y es \textit{Reveluv}, le gustará Taeyeon (10\%)
+%     \item Considerando al mismo usuario, demuestra o refuta (\textit{prove or disprove}) que le gustará Heize (15\%)
+%     \item ¿Si un usuario es Sone, \textit{Reveluv}, \textit{Blink} y le gusta el drama, cuáles son las posibles recomendaciones que le hará el sistema? ¿Por qué? (15\%)
+% \end{itemize}
+
+% \section{Inducción y recursión (25 \%)}
+
+% \begin{enumerate}[label=\tt \alph*)]
+%     \item Define de manera recursiva (i.e. usando inducción) una función $Enigma(n)$ que calcule el producto de los primeros $n$ enteros positivos (10 \%)
+%     \item Demuestra que para todo $n \geq 4, Enigma(n) > 2^n$ (15 \%)
+% \end{enumerate}
+
+\vfill
+
+\textbf{De acuerdo con el Código de Ética del Tecnológico de Monterrey, mi desempeño en esta actividad estará guiado por la integridad académica.}
+\end{document}
